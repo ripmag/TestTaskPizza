@@ -1,0 +1,69 @@
+﻿@model TestTaskPizza.Models.DishSelect
+
+@{
+    ViewBag.Title = "View";
+}
+
+@using (Html.BeginForm("SelectDish", "DishSelect", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.Id)
+        <div class="form-group">
+            <h4>
+                @Html.LabelFor(model => model.Name)
+                @Html.DisplayFor(model => model.Name)
+                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+            </h4>
+        </div>
+        <br />
+        @if (!Model.ComboBox)
+        {
+            <table class="table table-striped">
+                <tr>
+                    <td><p><h4>Ингридиент</h4></p></td>
+                    <td><p><h4>Колличество</h4></p></td>
+                    <td><p>Добавить/Убрать</p></td>
+                </tr>
+
+                @foreach (var _ingredient in Model.Ingredients)
+                {
+                    <tr>
+                        <td><p>@Html.DisplayFor(modelItem => _ingredient.productName)</p></td>
+                        <td><p>@Html.DisplayFor(modelItem => _ingredient.quantity)</p></td>
+                        <td>
+                            <p>
+                                @Html.ActionLink("Добавить", "AddFilling", "DishSelect", new { id = _ingredient.ProductId }, null)
+                                @Html.ActionLink("Убрать", "DeleteFilling", "DishSelect", new { id = _ingredient.ProductId }, null)
+                            </p>
+                        </td>
+                    </tr>
+                }
+
+            </table>
+        }
+        else
+        {
+            <h3>Комбо набор нельзя изменять!</h3>
+        }
+
+
+        <h4>@Html.LabelFor(model => model.DishesAmount) @Html.DisplayFor(model => model.DishesAmount) @Html.ActionLink("+", "AddDishCount", "DishSelect", null, null) @Html.ActionLink("-", "SubDishCount", "DishSelect", null, null)</h4>
+        <br />
+        <div>
+            <h3>
+                @Html.LabelFor(model => model.price) :  @Html.DisplayFor(model => model.price)
+            </h3>
+        </div>
+        <br />
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Оформить" class="btn btn-primary" />
+            </div>
+        </div>
+    </div>
+}
+

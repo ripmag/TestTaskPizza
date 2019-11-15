@@ -1,0 +1,53 @@
+﻿@model IEnumerable<TestTaskPizza.Models.Dish>
+
+@{
+    ViewBag.Title = "Блюда";
+}
+
+
+<div class="container">
+    <div class="row">
+        <div class="col">
+            @using (Html.BeginForm("Index", "Dishes", FormMethod.Post))
+            {
+                <div class="container-fluid">
+                    @Html.DropDownList("Group", (SelectList)ViewData["Groups"], new { @class = "form-control" })
+                    <input type="submit" value="Показать" class="btn btn-primary" />
+                </div>
+            }            
+        </div>
+        <div class="col-md-auto">
+            <h3>@Html.ActionLink("Добавить новое блюдо", "Create")</h3>
+        </div>
+        <div class="col">
+            <h3>@Html.ActionLink("Показать все", "Index", "Dishes", null, null)</h3>
+        </div>
+    </div>
+</div>
+<div class="card-group">
+    <div class="row">
+        @foreach (var item in Model)
+        {
+            <div class="col-sm-6">
+                <div class="card text-center" style="width: 18rem;">
+                    @{
+                        if (item.ImagePath != null)
+                        {
+                            <img src="~/Content/Images/@Url.Content(item.ImagePath)" class="card-img-top" alt="...">
+                        }
+                    }
+                    <div class="card-body">
+                        <h5 class="card-title">@item.Name</h5>
+                        <p class="card-text">Цена: @item.price.ToString("N2")</p>
+                        @Html.ActionLink("Выбрать", "SelectDish", "DishSelect", new { id = item.Id }, new { @class = "btn btn-primary" })
+                        @Html.ActionLink("Детали", "Details", new { id = item.Id }) |
+                        @Html.ActionLink("Удалить", "Delete", new { id = item.Id })
+
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+

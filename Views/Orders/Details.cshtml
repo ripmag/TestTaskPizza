@@ -1,0 +1,52 @@
+﻿@model TestTaskPizza.Models.Order
+
+@{
+    ViewBag.Title = "Details";
+}
+<div>
+    <h4>Order</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Client.Name)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Client.Name)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Client.NumberPhone)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Client.NumberPhone)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.DishName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.DishName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.DishAmount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DishAmount)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.DishPrice)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.DishPrice)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CreateDate)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CreateDate)
+        </dd>
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

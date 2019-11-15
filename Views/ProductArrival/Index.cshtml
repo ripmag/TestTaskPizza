@@ -1,0 +1,48 @@
+﻿@model IEnumerable<TestTaskPizza.Models.ProductArrival>
+
+@{
+    ViewBag.Title = "Список принятых товаров";
+}
+
+@ViewBag.Title
+<h3>
+    @Html.ActionLink("Добавить товар", "Create")
+</h3>
+<table class="table table-striped">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ArrivalDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Ingredient.productName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Ingredient.quantity)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Ingredient.price)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.ArrivalDate)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Ingredient.productName)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Ingredient.quantity)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Ingredient.price)
+    </td>
+    <td>
+        @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+    </td>
+</tr>
+}
+
+</table>

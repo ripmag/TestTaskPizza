@@ -1,0 +1,74 @@
+﻿@model TestTaskPizza.Models.Order
+
+@{
+    ViewBag.Title = "Создание заказа";
+}
+
+<h3>@ViewBag.Title</h3>
+
+@using (Html.BeginForm("Buy", "Orders", FormMethod.Post)) 
+{
+<table class="table table-striped">
+    <tr>
+        <th>
+            @Html.HiddenFor(Model => Model.Id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(Model => Model.Client.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(Model => Model.Client.email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(Model => Model.Client.NumberPhone)
+        </th>
+        <th>
+            @Html.DisplayNameFor(Model => Model.DishName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(Model => Model.DishAmount)
+        </th>
+        <th>
+            @Html.DisplayNameFor(Model => Model.DishPrice)
+        </th>
+        <th>
+
+        </th>
+    </tr>
+    <tr>
+        <th>           
+        </th>
+
+        <th>
+            @Html.EditorFor(Model => Model.Client.Name)
+        </th>
+        <th>
+            @Html.EditorFor(Model => Model.Client.email)
+        </th>
+        <th>
+            @Html.EditorFor(Model => Model.Client.NumberPhone)
+        </th>
+        <th>
+            @Html.DisplayFor(Model => Model.DishName)
+        </th>
+        <th>
+            @Html.DisplayFor(Model => Model.DishAmount)
+        </th>
+        <th>
+            @Html.DisplayFor(Model => Model.DishPrice)
+        </th>
+        <th>
+
+        </th>
+    </tr> 
+</table>
+<br />
+<div class="form-group">
+    <div class="col-md-offset-2 col-md-10">
+        <input type="submit" value="Заказать" class="btn btn-primary" />
+    </div>
+</div>
+
+    }
+
+

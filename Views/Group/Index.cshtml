@@ -1,0 +1,38 @@
+﻿@model IEnumerable<TestTaskPizza.Models.Group>
+
+@{
+    ViewBag.Title = "Группы";
+}
+
+    <h3>@ViewBag.Title</h3>
+
+<p>
+    @Html.ActionLink("Создать новую", "Create")
+</p>
+<table class="table table-striped">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.GroupName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SubName)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.GroupName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SubName)
+        </td>
+
+        <td>
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>

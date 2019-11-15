@@ -1,0 +1,47 @@
+﻿@model List<TestTaskPizza.Models.Product>
+
+@{
+    ViewBag.Title = "Создание рецепта";
+}
+
+<h2>Создание рецепта</h2>
+
+
+@using (Html.BeginForm())
+{
+    <input id="RNAME" name="RNAME" type="text" value="" class = "form-control" placeholder="Введите название рецепта"/>
+    <table class="table table-striped">
+        <tr>
+            <td><p> Название продукта </p></td>
+            <td> </td>
+            <td> </td>
+            <td> Добавить в рецепт</td>
+            <td> Колличество</td>
+        </tr>
+        @for (int i = 0; i < Model.Count; i++)
+        {
+    <tr>
+        <td>@Html.DisplayFor(m => m[i].Name)</td>
+        <td>@Html.HiddenFor(m => m[i].Id)</td>
+        <td>
+            @{
+                if (Model[i].ImagePath != null)
+                {
+                    <div class="display-label">
+                        <img src="~/Content/Images/@Url.Content(Model[i].ImagePath)" alt="Oppa" style="height:32px;width:32px;" />
+                    </div>
+                }
+            }
+        </td>
+        <td>@Html.CheckBox("selected[" + i.ToString() + "]", false)</td>
+        <td>@Html.Editor("Колличество", "quantity[" + i.ToString() + "]", "quantity[" + i.ToString() + "]")</td>
+    </tr>
+        }
+    </table>
+    <input type="submit" value="Сохранить" class="btn btn-primary"/>
+}
+
+
+
+
+

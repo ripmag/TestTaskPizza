@@ -1,0 +1,42 @@
+﻿@model TestTaskPizza.Models.Recipe
+
+@{
+    ViewBag.Title = "Детали";
+}
+
+<h2>Детали</h2>
+
+<div>
+    <h4>Рецепт</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.RecipeName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RecipeName)
+        </dd>
+    </dl>
+    <table class="table table-striped">
+        <tr>
+            <td><p> Название продукта </p></td>
+            <td> Колличество</td>
+        </tr>
+        @foreach (var ingr in Model.Ingredients)
+        {
+            <tr>
+                <td>@Html.DisplayTextFor(m => ingr.productName)</td>
+                <td>@Html.DisplayTextFor(m => ingr.quantity)</td>
+                <td>
+                    
+                </td>
+
+            </tr>
+        }
+    </table>
+</div>
+<p>
+    @Html.ActionLink("Редактировать", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Назад", "Index")
+</p>
